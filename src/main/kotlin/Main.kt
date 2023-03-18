@@ -36,7 +36,12 @@ fun parseArgs(args: Array<String>) {
 
 Options:
   -h, --host <host>
-        Listen host. (default "$aHost")
+        Listen host.
+        If 0.0.0.0 will listen IPv4 only.
+        If :: or [::] will listen IPv6,
+        and you system enable dual-stack socket,
+        it may also listen IPv4.
+        (default "$aHost")
   -p, --port <port>
         Listen port. If 0 is random. (default $aPort)
   -m, --allowed-methods <method>[,<methods>...]
@@ -77,8 +82,9 @@ Options:
 fun main(args: Array<String>) {
     parseArgs(args)
 
-//    Listen only IPv4
-//    System.setProperty("java.net.preferIPv4Stack", "true")
+    if (aHost == "0.0.0.0") {
+        System.setProperty("java.net.preferIPv4Stack", "true")
+    }
 
     val addr = InetSocketAddress(aHost, aPort)
     println("Listening $addr")
@@ -102,7 +108,7 @@ fun main(args: Array<String>) {
         }
 
         val os = ByteArrayOutputStream(1024)
-        os.write("Hello HTTP\n$requestLine\n\n".toByteArray())
+        os.write("Hello HTTP\n\n$requestLine\r\n".toByteArray())
         for (header in t.requestHeaders) {
             for (value in header.value) {
                 os.write("${header.key}: $value\n".toByteArray())
