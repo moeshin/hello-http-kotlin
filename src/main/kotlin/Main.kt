@@ -4,7 +4,7 @@ import java.net.InetSocketAddress
 import kotlin.collections.HashSet
 import kotlin.system.exitProcess
 
-var aHost = "0.0.0.0"
+var aHost = "127.0.0.1"
 var aPort = 8080
 var aAllowedMethods: Set<String>? = null
 var aDisallowedMethods: Set<String>? = null
@@ -77,7 +77,9 @@ Options:
 fun main(args: Array<String>) {
     parseArgs(args)
 
-//    System.setProperty("java.net.preferIPv4Stack" , "true")
+//    Listen only IPv4
+//    System.setProperty("java.net.preferIPv4Stack", "true")
+
     val addr = InetSocketAddress(aHost, aPort)
     println("Listening $addr")
     val server = HttpServer.create(addr, 0)
