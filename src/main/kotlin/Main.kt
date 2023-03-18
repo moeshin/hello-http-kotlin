@@ -37,13 +37,15 @@ fun parseArgs(args: Array<String>) {
 Options:
   -h, --host <host>
         Listen host.
-        If 0.0.0.0 will listen IPv4 only.
-        If :: or [::] will listen IPv6,
+        If 0.0.0.0 will listen all IPv4 only.
+        If :: or [::] will listen all IPv6,
         and you system enable dual-stack socket,
-        it may also listen IPv4.
+        it may also listen all IPv4.
         (default "$aHost")
   -p, --port <port>
-        Listen port. If 0 is random. (default $aPort)
+        Listen port.
+        If 0 is random.
+        (default $aPort)
   -m, --allowed-methods <method>[,<methods>...]
         Disallowed methods.
   -d, --disallowed-methods <method>[,<methods>...]
