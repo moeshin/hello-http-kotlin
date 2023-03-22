@@ -46,9 +46,9 @@ Options:
         Listen port.
         If 0 is random.
         (default $aPort)
-  -m, --allowed-methods <method>[,<methods>...]
+  -m, --allowed-methods <method>[,<method>...]
         Disallowed methods.
-  -d, --disallowed-methods <method>[,<methods>...]
+  -d, --disallowed-methods <method>[,<method>...]
         Allowed methods.
   --help
         Print help.
