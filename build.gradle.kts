@@ -25,3 +25,9 @@ kotlin {
 application {
     mainClass.set("MainKt")
 }
+
+tasks.jar {
+    manifest.attributes["Main-Class"] = "MainKt"
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from(configurations.runtimeClasspath.get().map(::zipTree))
+}
